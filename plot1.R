@@ -15,9 +15,10 @@ SCC <- readRDS("Source_Classification_Code.rds")
 aggregatedTotalByYear <- aggregate(Emissions ~ year, NEI, sum)
 
 png("plot1.png")
-plot(aggregatedTotalByYear$year, aggregatedTotalByYear$Emissions, type = "l",
+plot(aggregatedTotalByYear$year, aggregatedTotalByYear$Emissions, type = "p",
      main = "Total Emissions of PM2.5 in the US by Year", 
      xlab = "Year", ylab = "PM2.5 Emissions (tons)")
+abline(lm(aggregatedTotalByYear$Emissions ~ aggregatedTotalByYear$year))
 dev.off()
 
-## According to graph, emissions of PM2.5 have decreased.
+## According to graph, emissions of PM2.5 have decreased. Abline shows general decrease

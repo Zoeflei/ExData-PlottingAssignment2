@@ -17,9 +17,14 @@ marylandData <- NEI$fips == "24510"
 marylandData <- NEI[marylandData, ]
 
 marylandAggregate <- aggregate(Emissions ~ year, marylandData, sum)
+years <- c(1999, 2002, 2005, 2008)
 
 png("plot2.png")
-plot(marylandAggregate$year, marylandAggregate$Emissions, type = "l",
+plot(marylandAggregate$year, marylandAggregate$Emissions, type = "p",
      main = "Total PM2.5 Emissions in Maryland by Year",
      ylab = "PM2.5 Emissions (tons)", xlab = "Year")
+abline(lm(marylandAggregate$Emissions ~ marylandAggregate$year))
 dev.off()
+
+## Answer: There has been a general decrease, even with an increase between years 2002 
+## and 2005. Abline shows a general decrease from 2000 to 2008
